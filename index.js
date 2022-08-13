@@ -1,19 +1,11 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 8000
-
-//Import Routes
-const api = require('./routes/api/rootRouter')
+const rootRouter = require('./routes/rootRouter')
 
 // Apply middlewares
 app.use(express.json())
-
-app.use((req, res, next) => {
-    console.log("here")
-    next()
-})
-
-app.use('/api', api);
+app.use('/', rootRouter);
 
 // Catch all unhandled requests
 app.all('*', (req, res, next) => {
